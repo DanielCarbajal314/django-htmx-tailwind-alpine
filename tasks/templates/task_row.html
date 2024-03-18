@@ -1,0 +1,39 @@
+<tr 
+    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" 
+    id="task-{{object.id}}"
+>
+    <td class="border border-slate-700 px-6 py-4">{{ object.id }}</td>
+    <td class="border border-slate-700 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ object.description }}</td>
+    <td class="border border-slate-700 px-6 py-4">{{ object.schedule_at }}</td>
+    <td class="border border-slate-700 px-6 py-4">{{ object.created_at }}</td>
+    <td class="border border-slate-700 px-6 py-4 flex gap-1 justify-center items-center">
+        <button 
+            type="button"
+            class="delete-button text-gray-400 bg-transparent hover:bg-gray-600 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" 
+            hx-delete="./delete/{{object.id}}"
+            hx-target="#task-{{object.id}}"
+            hx-swap="delete"
+            hx-trigger="click"
+        >
+            <svg class="h-6 w-6 text-gray-200"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="4" y1="7" x2="20" y2="7" />
+                <line x1="10" y1="11" x2="10" y2="17" />  <line x1="14" y1="11" x2="14" y2="17" />
+                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+            </svg>
+        </button>
+        <button
+            hx-get="./update/{{object.id}}"
+            class="delete-button text-gray-400 bg-transparent hover:bg-gray-600 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" 
+            hx-target="#update-modal-body"
+            hx-swap="innerHTML"
+            hx-trigger="click"
+            x-on:htmx:after-request="openUpdateModal = true"
+        >
+            <svg class="h-8 w-8 text-gray-200" xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+            </svg>
+        </button>
+    </td>
+</tr>
